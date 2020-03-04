@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'faker'
 
 class UserTest < ActiveSupport::TestCase
   test 'user with a valid email should be valid' do
