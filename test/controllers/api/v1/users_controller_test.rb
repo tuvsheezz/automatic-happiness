@@ -4,7 +4,10 @@ require 'test_helper'
 
 class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = User.create! email: Faker::Internet.email, password_digest: Faker::Alphanumeric.alphanumeric(number: 10)
+    @user = User.create!(
+      email: Faker::Internet.email,
+      password_digest: Faker::Alphanumeric.alphanumeric(number: 10)
+    )
   end
 
   test 'should show user' do
@@ -17,38 +20,62 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create user' do
     assert_difference('User.count') do
-      post api_v1_users_url, params: { user: { email: Faker::Internet.email, password: Faker::Alphanumeric.alphanumeric(number: 10) } }, as: :json
+      post  api_v1_users_url,
+            params: {
+              user: {
+                email: Faker::Internet.email,
+                password: Faker::Alphanumeric.alphanumeric(number: 10)
+              }
+            },
+            as: :json
     end
     assert_response :created
   end
 
   test 'should not create user with taken email' do
     assert_no_difference('User.count') do
-      post api_v1_users_url, params: { user: { email: @user.email, password: Faker::Alphanumeric.alphanumeric(number: 10) } }, as: :json
+      post  api_v1_users_url,
+            params: {
+              user: {
+                email: @user.email,
+                password: Faker::Alphanumeric.alphanumeric(number: 10)
+              }
+            },
+            as: :json
     end
     assert_response :unprocessable_entity
   end
 
   test 'should not create user with empty email or password' do
     assert_no_difference('User.count') do
-      post api_v1_users_url, params: { user: { email: nil, password: nil } }, as: :json
+      post  api_v1_users_url,
+            params: { user: { email: nil, password: nil } }, as: :json
     end
     assert_response :unprocessable_entity
   end
 
   test 'should update user' do
-    patch api_v1_user_url(@user), params: { user: { email: @user.email } }, headers: { Authorization: JsonWebToken.encode(user_id: @user.id) }, as: :json
+    patch api_v1_user_url(@user),
+          params: { user: { email: @user.email } },
+          headers: { Authorization: JsonWebToken.encode(user_id: @user.id) },
+          as: :json
     assert_response :success
   end
 
   test 'should forbid update user' do
-    patch api_v1_user_url(@user), params: { user: { email: @user.email } }, as: :json
+    patch api_v1_user_url(@user),
+          params: { user: { email: @user.email } },
+          as: :json
     assert_response :forbidden
   end
 
   test 'should destroy user' do
     assert_difference('User.count', -1) do
-      delete api_v1_user_url(@user), headers: { Authorization: JsonWebToken.encode(user_id: @user.id) }, as: :json
+      delete  api_v1_user_url(@user),
+              headers: {
+                Authorization: JsonWebToken.encode(user_id: @user.id)
+              },
+              as: :json
     end
     assert_response :no_content
   end
