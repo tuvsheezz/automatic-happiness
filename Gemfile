@@ -8,7 +8,7 @@ ruby '2.6.5'
 gem 'config'
 # Jwt token
 gem 'jwt', '~> 2.2'
-# Netflix’s gem: fast_jsonapi
+# fast_jsonapi for json response
 gem 'fast_jsonapi'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
@@ -22,7 +22,6 @@ gem 'puma', '~> 4.1'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-gem 'awesome_print'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
