@@ -4,10 +4,10 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
-
+# Config
+gem 'config'
 # Jwt token
 gem 'jwt', '~> 2.2'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 # Use sqlite3 as the database for Active Record
@@ -35,7 +35,12 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'faker', '~> 2.10', '>= 2.10.2'
   gem 'pry', '~> 0.12.2'
+  gem 'pry-byebug'
+  gem 'pry-doc'
+  gem 'pry-rails'
+  gem 'pry-stack_explorer'
   gem 'rubocop', '~> 0.80.1', require: false
+  gem 'solargraph', '~> 0.38.5'
 end
 
 group :development do
