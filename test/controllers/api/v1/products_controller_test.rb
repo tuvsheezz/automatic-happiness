@@ -45,4 +45,18 @@ class Api::V1::ProductsControllerTest < ActionDispatch::IntegrationTest
     patch api_v1_product_url(@product), params: { product: { title: @product.title } }, headers: { Authorization: JsonWebToken.encode(user_id: @user2.id) }, as: :json
     assert_response :forbidden
   end
+
+  test "should destroy product" do
+    assert_difference('Product.count', -1) do
+      delete api_v1_product_url(@product), headers: { Authorization: JsonWebToken.encode(user_id: @product.user_id) }, as: :json
+    end
+    assert_response :no_content
+  end
+
+  test "should forbid destroy product" do
+    assert_no_difference('Product.count') do
+      delete api_v1_user_url(@product), headers: { Authorization: JsonWebToken.encode(user_id: @user2.id) }, as: :json
+    end
+    assert_response :forbidden
+  end
 end

@@ -2,8 +2,8 @@
 
 class Api::V1::ProductsController < ApplicationController
   before_action :check_login, only: [:create]
-  before_action :set_product, only: %i[show update]
-  before_action :check_owner, only: [:update]
+  before_action :set_product, only: %i[show update destroy]
+  before_action :check_owner, only: %i[update destroy]
 
   def index
     render json: Product.all
@@ -28,6 +28,11 @@ class Api::V1::ProductsController < ApplicationController
     else
       render json: @product.errors, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @product.destroy
+    head 204
   end
 
   private
