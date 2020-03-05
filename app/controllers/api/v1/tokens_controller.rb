@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::TokensController < ApplicationController
   def create
     @user = User.find_by_email(user_params[:email])
@@ -13,7 +15,7 @@ class Api::V1::TokensController < ApplicationController
 
   private
 
-    def user_params
-      params.require(:user).permit(:email, :password)
-    end
+  def user_params
+    params.require(:user).permit(:email, :password)
+  end
 end

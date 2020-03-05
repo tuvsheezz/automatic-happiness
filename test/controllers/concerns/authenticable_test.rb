@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AuthenticableTest < ActionDispatch::IntegrationTest
   setup do
     @user = User.create! email: Faker::Internet.email, password_digest: BCrypt::Password.create(Faker::Alphanumeric.alphanumeric(number: 10))
@@ -14,7 +16,6 @@ class AuthenticableTest < ActionDispatch::IntegrationTest
     assert_nil @authentication.current_user
   end
 end
-
 
 class MockController
   include Authenticable

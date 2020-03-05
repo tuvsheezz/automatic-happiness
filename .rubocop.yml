@@ -1,0 +1,24 @@
+AllCops:
+  TargetRubyVersion: 2.6.5
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'bin/**/*'
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+
+Layout/LineLength:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: false
+
+Style/HashTransformKeys:
+  Enabled: false
+
+Style/HashTransformValues:
+  Enabled: false
