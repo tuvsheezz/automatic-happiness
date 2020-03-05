@@ -2,7 +2,7 @@
 
 class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: %i[show update destroy]
-  before_action :check_user, only: %i[update destroy]
+  before_action :check_login, only: %i[update destroy]
 
   def show
     render json: @user
@@ -40,7 +40,7 @@ class Api::V1::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def check_user
+  def check_login
     head :forbidden unless @user.id == current_user&.id
   end
 end

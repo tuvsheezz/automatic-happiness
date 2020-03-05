@@ -14,4 +14,10 @@ module Authenticable
                       ActiveRecord::RecordNotFound
                     end
   end
+
+  private
+
+  def check_login
+    head :forbidden unless current_user
+  end
 end
