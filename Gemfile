@@ -34,13 +34,11 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'faker', '~> 2.10', '>= 2.10.2'
   gem 'pry', '~> 0.12.2'
   gem 'pry-byebug'
   gem 'pry-doc'
   gem 'pry-rails'
   gem 'pry-stack_explorer'
-  gem 'rubocop', '~> 0.80.1', require: false
   gem 'solargraph', '~> 0.38.5'
 end
 
