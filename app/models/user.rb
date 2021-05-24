@@ -8,4 +8,6 @@ class User < ApplicationRecord
   validates :password_digest, presence: true
 
   has_many :products, dependent: :destroy
+
+  enum role: { guest: 0, guest2: 1, admin: 2 }
 end

@@ -8,8 +8,8 @@
 Product.delete_all
 User.delete_all
 
-3.times do
-  user = User.create! email: Faker::Internet.email, password: 'sup3r_s3kr3t'
+0.upto(2) do |i|
+  user = User.create! email: Faker::Internet.email, password: 'sup3r_s3kr3t', role: i
   puts "Created a new user: #{user.email}"
 
   2.times do
