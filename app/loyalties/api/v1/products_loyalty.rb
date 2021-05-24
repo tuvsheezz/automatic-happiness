@@ -11,4 +11,6 @@ class Api::V1::ProductsLoyalty < ApplicationLoyalty
   def create?
     @user.admin?
   end
+
+  def aaaa?; true; end
 end

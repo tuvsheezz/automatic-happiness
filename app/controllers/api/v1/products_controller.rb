@@ -7,6 +7,20 @@ class Api::V1::ProductsController < ApplicationController
   before_action :authorize!
   after_action :verify_authorized
 
+  def aaaa
+    actions = Rails.application.routes.routes.map do |route|
+      { controller: route.defaults[:controller].gsub('api/v1/', ''), action: route.defaults[:action] } if route.defaults[:controller]&.include? 'api/v1'
+    end.compact.uniq
+
+    privileges = {}
+
+    actions.each do |x|
+      privileges["#{x[:controller]}/#{x[:action]}"] = loyalty(:"#{x[controller]}").create?
+    end
+
+    render json: { Hi: loyalty(:products).index?, privileges: privileges }
+  end
+  
   def index
     @products = Product.all
     render json: ProductSerializer.new(@products).serializable_hash
