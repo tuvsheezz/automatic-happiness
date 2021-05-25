@@ -8,9 +8,15 @@ class Api::V1::ProductsLoyalty < ApplicationLoyalty
 
   def index?; true; end
 
+  def show?; !@user.nil?; end
+
   def create?
     @user.admin?
   end
+
+  def update?; create?; end
+
+  def destroy?; create?; end
 
   def aaaa?; true; end
 end

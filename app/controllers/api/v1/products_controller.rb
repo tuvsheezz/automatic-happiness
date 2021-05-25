@@ -9,13 +9,13 @@ class Api::V1::ProductsController < ApplicationController
 
   def aaaa
     actions = Rails.application.routes.routes.map do |route|
-      { controller: route.defaults[:controller].gsub('api/v1/', ''), action: route.defaults[:action] } if route.defaults[:controller]&.include? 'api/v1'
+      { controller: route.defaults[:controller], action: route.defaults[:action] } if route.defaults[:controller]&.include? 'api/v1'
     end.compact.uniq
 
     privileges = {}
 
     actions.each do |x|
-      privileges["#{x[:controller]}/#{x[:action]}"] = loyalty(:"#{x[controller]}").create?
+      privileges["#{x[:controller]}/#{x[:action]}"] = eval("loyalty(:#{x[:controller].gsub('api/v1/', '')}).#{x[:action]}?")
     end
 
     render json: { Hi: loyalty(:products).index?, privileges: privileges }
