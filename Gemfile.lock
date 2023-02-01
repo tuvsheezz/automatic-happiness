@@ -147,6 +147,8 @@ GEM
     nio4r (2.5.7)
     nokogiri (1.11.5-x86_64-darwin)
       racc (~> 1.4)
+    nokogiri (1.11.5-x86_64-linux)
+      racc (~> 1.4)
     parallel (1.20.1)
     parser (3.0.1.1)
       ast (~> 2.4.1)
@@ -156,7 +158,7 @@ GEM
     pry-byebug (3.8.0)
       byebug (~> 11.0)
       pry (~> 0.10)
-    pry-doc (1.1.0)
+    pry-doc (1.4.0)
       pry (~> 0.11)
       yard (~> 0.9.11)
     pry-rails (0.3.9)
@@ -248,14 +250,17 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.0.0)
+    webrick (1.7.0)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    yard (0.9.26)
+    yard (0.9.28)
+      webrick (~> 1.7.0)
     zeitwerk (2.4.2)
 
 PLATFORMS
   x86_64-darwin-19
+  x86_64-linux
 
 DEPENDENCIES
   banken
